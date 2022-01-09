@@ -35,6 +35,14 @@ try {
 } catch (err) {
     res.status(400).send(err);
 }
+try {
+    app.get('/student', async (req, res) => {
+        const studentData = await Student.find();
+        res.send(studentData);
+    })
+} catch (err) {
+    res.send(err);
+}
 
 
 
