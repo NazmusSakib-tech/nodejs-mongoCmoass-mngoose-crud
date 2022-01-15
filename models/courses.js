@@ -1,39 +1,28 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-const studentSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         minlength: 3
     },
 
-    email: {
+    code: {
         type: String,
         required: true,
-        unique: [true, "Email is already exists"],
+        unique: true,
         // validate(value) {
         //     if (!validator.isEmail(value)) {
         //         throw new Error("Invalid Email")
         //     }
         // }
-    },
-    phone: {
-        type: Number,
-        min: 10,
-        required: true,
-        unique: true
-    },
-    address: {
-        type: String,
-        required: false,
-    },
-
+    }
 
 })
 
 //we will create a new collection
 
-const Student = new mongoose.model('Student', studentSchema);
+const Course = new mongoose.model('Course', courseSchema);
 
-module.exports = Student;
+module.exports = Course;

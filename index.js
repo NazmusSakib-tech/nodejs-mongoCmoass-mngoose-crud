@@ -1,5 +1,6 @@
 const express = require('express');
 const Student = require('./models/students');
+const Course = require('./models/courses');
 require('./db/conn');
 
 
@@ -15,6 +16,8 @@ app.use((err, req, res, next) => {
 app.get('/', (req, res) => {
     res.send('home page inventory test');
 });
+
+// using callbak function
 // app.post('/student', (req, res) => {
 //     console.log(req.body);
 //     const user = new Student(req.body);
