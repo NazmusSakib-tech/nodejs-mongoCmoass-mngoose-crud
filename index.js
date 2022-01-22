@@ -29,6 +29,8 @@ app.get('/', (req, res) => {
 
 // });
 
+
+// student collection
 try {
     app.post('/student', async (req, res) => {
         const user = new Student(req.body);
@@ -47,6 +49,37 @@ try {
     res.send(err);
 }
 
+// single student find
+try {
+    app.get('/student/:id', async (req, res) => {
+        const _id = req.params.id;
+        console.log(_id);
+        const singleStudentData = await Student.findOne({ _id: _id });
+        res.send(singleStudentData);
+    })
+} catch (err) {
+    res.send(err);
+}
+
+// course collection 
+
+try {
+    app.post('/course', async (req, res) => {
+        const course = new Course(req.body);
+        const insertCourse = await course.save();
+        res.status(201).send(insertCourse);
+    })
+} catch (err) {
+    res.status(400).send(err);
+}
+try {
+    app.get('/course', async (req, res) => {
+        const allCourseInfo = await Course.find();
+        res.send(allCourseInfo);
+    })
+} catch (err) {
+    res.send(err);
+}
 
 
 app.listen(port, '192.168.68.129', () => {

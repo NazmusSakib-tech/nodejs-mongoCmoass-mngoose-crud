@@ -28,7 +28,22 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    course: [
+        {
+            type: String,
 
+
+        }
+    ],
+    code: {
+        type: String,
+
+        // validate(value) {
+        //     if (!validator.isEmail(value)) {
+        //         throw new Error("Invalid Email")
+        //     }
+        // }
+    }
 
 })
 
