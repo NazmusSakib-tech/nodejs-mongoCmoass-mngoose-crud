@@ -11,7 +11,7 @@ const courseSchema = new mongoose.Schema({
     code: {
         type: String,
         required: true,
-        unique: true,
+        unique: [true, 'course Code duplicate'],
         // validate(value) {
         //     if (!validator.isEmail(value)) {
         //         throw new Error("Invalid Email")

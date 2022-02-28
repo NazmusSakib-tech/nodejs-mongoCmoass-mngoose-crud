@@ -64,13 +64,15 @@ try {
 // course collection 
 
 try {
-    app.post('/course', async (req, res) => {
+    app.post('/course', async (req, res, next) => {
         const course = new Course(req.body);
         const insertCourse = await course.save();
         res.status(201).send(insertCourse);
+        next();
     })
 } catch (err) {
     res.status(400).send(err);
+    next();
 }
 try {
     app.get('/course', async (req, res) => {
@@ -81,7 +83,15 @@ try {
     res.send(err);
 }
 
+// Default Error Handler
+function errorHandler(err, req, res, next) {
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.status(500).json({ "error": err });
+}
+app.use(errorHandler);
 
-app.listen(port, '192.168.68.129', () => {
+app.listen(port, () => {
     console.log('listen port on 8000')
 })
